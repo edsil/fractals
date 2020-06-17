@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Play</title>
+        <script src="play.js"></script>
+    </head>
+    <body>
+      <div id="input">
+        <table>
+          <tr>
+            <td>
+
+              Interactions:<br>
+
+              <input type="range" min="0" max="400" value="100" class="slider" id="iteract"><br>
+              X:<input type="text" value="-2" id="xStart"><br>
+              Y:<input type="text" value="-1.25" id="yStart"><br>
+              Size:<input type="text" value="3" id="size">
+            </td>
+            <td>
+              Step size:<input type="text" value="100" id="step"><br>
+              Zoom factor:<input type="text" value="4" id="zoom">
+              <div id="tZoom">Total Zoom: 1<div>
+            <td>
+              <button onclick="left()"> < </button>
+            </td>
+            <td>
+              <button onclick="up()"> ^ </button><br>
+              <button onclick="down()"> v </button>
+            </td>
+            <td>
+              <button onclick="right()"> > </button>
+            </td>
+            <td>
+              <pre>  Red:<input type="range" min="0" max="255" value="198" step="1" class="slider" id="red"></pre>
+              <pre>Green:<input type="range" min="0" max="255" value="162" step="1" class="slider" id="green"></pre>
+              <pre> Blue:<input type="range" min="0" max="255" value="255" step="1" class="slider" id="blue"></pre>
+              <button onclick="fractal()">Go</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+
+
+
+
+        <canvas id="canvas" width="689" height="574"></canvas>
+
+
+    </body>
+</html>
