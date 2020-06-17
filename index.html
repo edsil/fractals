@@ -12,10 +12,6 @@
         <table>
           <tr>
             <td>
-
-              Interactions:<br>
-
-              <input type="range" min="0" max="400" value="100" class="slider" id="iteract"><br>
               X:<input type="text" value="-2" id="xStart"><br>
               Y:<input type="text" value="-1.25" id="yStart"><br>
               Size:<input type="text" value="3" id="size">
@@ -40,6 +36,12 @@
               <pre> Blue:<input type="range" min="0" max="255" value="255" step="1" class="slider" id="blue"></pre>
               <button onclick="fractal()">Go</button>
             </td>
+            <td>
+              Mode:<br>
+              <input type="radio" id="beauty" value="beauty" name="type" checked="true">
+              <label for="beauty">Beauty</label><br>
+              <input type="radio" id="detail" value="detail" name="type">
+              <label for="detail">Detail</label><br>
           </tr>
         </table>
       </div>
