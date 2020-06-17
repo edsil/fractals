@@ -3,7 +3,7 @@ var h, w;
 var xScale=[], yScale=[];
 var maxIter = 100;
 var limit = 200;
-var mzoom, mstep, miterac, mred, mgreen, mblue, tzoom, input;
+var mzoom, mstep, miterac, mred, mgreen, mblue, tzoom, input, modeB, modeD;
 var red, green, blue;
 var max = maxIp = maxRp = maxIn = maxRn = 0;
 var mouseClicked = false, mouseReleased = true;
@@ -13,13 +13,11 @@ var start = [-0.15, -.7];
 var size = 0.2;
 var clickx = clicky = 0;
 var step = 100;
-var tempMaxIter=0;
 
 
 onload = function(){
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
-    miteract = document.getElementById("iteract");
     mzoom = document.getElementById("zoom");
     xStart = document.getElementById("xStart");
     yStart = document.getElementById("yStart");
@@ -30,6 +28,8 @@ onload = function(){
     mblue = document.getElementById("blue");
     tzoom = document.getElementById("tZoom");
     input = document.getElementById("input");
+    modeB = document.getElementById("beauty");
+    modeD = document.getElementById("detail");
     freeSpace = window.innerHeight - input.offsetHeight;
     canvas.height = freeSpace;
     canvas.width = freeSpace * (3/2.5);
@@ -72,21 +72,25 @@ function isIn(x, y){
       result = limit;
       break;}
   }
+  if(modeB.checked){
+    if (Math.abs(imNum.real) > Math.sqrt(limit)){
+        r = (inter/21)*red;
+    }
+    if (Math.abs(imNum.imag) > Math.sqrt(limit)){
+        g = (inter/21)*green;
+    }
 
-  if (Math.abs(imNum.real) > Math.sqrt(limit)){
-      r = (inter/21)*red;
+    if (inter>21){
+      inter = 0;
+    }
+
+    b = (inter/21)*blue;
+
+    return ([r,g,b]);
   }
-  if (Math.abs(imNum.imag) > Math.sqrt(limit)){
-      g = (inter/21)*green;
+  else {
+    return ([(Math.abs(imNum.imag)/(limit))*red, (imNum.abs()/limit)*green, (Math.abs(imNum.real)/(limit))*blue]);
   }
-
-  if (inter>21){
-    inter = 0;
-  }
-
-  b = (inter/21)*blue;
-
-  return ([r,g,b]);
 }
 
 function loadForm(){
@@ -102,7 +106,6 @@ function loadForm(){
   this.yScale = [h/(outWindow[3]-outWindow[1]), outWindow[1]];
   zoom = parseFloat(mzoom.value);
   step = parseInt(mstep.value);
-  maxIter = parseInt(miteract.value);
   red = parseInt(mred.value);
   green = parseInt(mgreen.value);
   blue = parseInt(mblue.value);
